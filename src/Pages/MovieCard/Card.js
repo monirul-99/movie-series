@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Testing from "../Images/testing img.jpg";
+import { AuthContext } from "../../Context/UserContext";
 
 const Card = ({ card }) => {
-  console.log(card.show);
+  const { setDetailsMovie, setDataSave } = useContext(AuthContext);
   const { image, name, rating, genres } = card.show;
   return (
-    <div className="bg-white shadow-xl w-[350px] rounded-xl mx-auto">
-      <div className="w-[350px] h-[450px] overflow-hidden  ">
+    <div className="bg-white shadow-xl lg:w-[350px] rounded-xl mx-auto">
+      <div className="lg:w-[350px] h-[450px] overflow-hidden ">
         <img className="rounded-t-lg" src={image.original} alt="" />
-
-        <p>{rating.average ? rating.average : "4.5"}</p>
       </div>
       <div className="p-5 bg-[#23212a] font-Poppins">
         <div className="flex justify-between items-center">
@@ -18,7 +16,7 @@ const Card = ({ card }) => {
           <div className="text-white tracking-wide uppercase text-[13px] flex items-center space-x-2">
             <svg
               aria-hidden="true"
-              class="w-5 h-5 text-yellow-400"
+              className="w-5 h-5 text-yellow-400"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -32,14 +30,24 @@ const Card = ({ card }) => {
           </div>
         </div>
         <aside className="pt-2">
-          <h3 className="tracking-widest text-[#eeaf42] text-[14px] font-Ubuntu">
-            {genres[0]} {genres[1]}
-          </h3>
+          <div className="tracking-widest text-[#eeaf42] text-[14px] font-Ubuntu flex space-x-3">
+            {genres?.map((genre, inx) => (
+              <h3 key={inx}>{genre}</h3>
+            ))}
+          </div>
         </aside>
 
-        <button className="bg-[#EE5A15] text-[13px] text-white px-5 py-1.5 mt-3 rounded-sm">
-          Movie Details
-        </button>
+        <Link
+          to="/bookingDetails"
+          onClick={() => {
+            setDetailsMovie(card.show);
+            setDataSave(true);
+          }}
+        >
+          <button className="bg-[#EE5A15] text-[13px] text-white px-5 py-1.5 mt-3 rounded-sm">
+            Movie Details
+          </button>
+        </Link>
       </div>
     </div>
   );

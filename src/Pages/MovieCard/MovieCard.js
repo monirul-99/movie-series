@@ -13,7 +13,6 @@ const MovieCard = () => {
         setError(error.message);
       });
   }, []);
-  console.log(movieData);
   return (
     <div className="container mx-auto">
       <div className="uppercase font-Poppins mt-16">
@@ -24,7 +23,7 @@ const MovieCard = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-10 pb-16">
+      <div className="grid xl:grid-cols-4 lg:gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 sm:gap-12 gap-12 md:ga-12 pb-16">
         {movieData?.map((card, inx) => (
           <Card key={inx} card={card}></Card>
         ))}

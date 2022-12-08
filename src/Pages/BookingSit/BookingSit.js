@@ -1,5 +1,5 @@
 import React from "react";
-import Sample from "../Images/signUP Test.jpg";
+import Sample from "../Images/dunkirk.webp";
 
 const BookingSit = () => {
   return (
